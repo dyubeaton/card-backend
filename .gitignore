@@ -1,0 +1,24 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+/bin/
+/cmd/server/server
+
+# Test and coverage
+*.test
+*.out
+coverage.txt
+
+# IDE
+.vscode/
+.idea/
+
+# Go workspace
+go.work
+go.work.sum
+
+# OS
+.DS_Store
