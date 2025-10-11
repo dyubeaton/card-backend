@@ -1,11 +1,18 @@
 package domain
 
 type GameState struct {
+	//player card cycle
 	Deck   *Deck
-	Board  *Board
 	Hand   *Hand
 	Trash  *Trash
 	Banish *Banish
+
+	//enemy instance cycle
+	EnemyTrash  *Trash
+	EnemyBanish *Banish
+
+	//shared
+	Board *Board
 }
 
 func NewGameState() *GameState {
@@ -13,11 +20,13 @@ func NewGameState() *GameState {
 		//Initialize fields
 
 		//Likely call initializaers of each component
-		Deck:   NewDeck(),
-		Board:  NewBoard(),
-		Hand:   NewHand(),
-		Trash:  NewTrash(),
-		Banish: NewBanish(),
+		Deck:        NewDeck(),
+		Board:       NewBoard(),
+		Hand:        NewHand(),
+		Trash:       NewTrash(),
+		EnemyTrash:  NewTrash(),
+		EnemyBanish: NewBanish(),
+		Banish:      NewBanish(),
 	}
 
 }
