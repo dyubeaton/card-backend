@@ -6,7 +6,7 @@ package domain
 type GameObjectInstance interface {
 	GetInstanceID() string
 	GetTemplate() GameObjectTemplate
-	GetZone() Zone
+	GetLocation() Zone
 }
 
 //The broad, generic type that represents an instance of a game object
@@ -14,10 +14,16 @@ type GameObjectInstance interface {
 //Ex: Troop takes an instance of CardInstance, and troop will implement unit.
 type CardInstance struct {
 	GameObjectInstance
+	InstanceID string
+	Template   CardTemplate
+	Location   Zone
 }
 
 //Consider: are all enemies neccesarily units? Perhaps they have landmarks as well?
 //In that case the same separation should occur as in CardInstance
 type EnemeyInstance struct {
 	GameObjectInstance
+	InstanceID string
+	Template   EnemyTemplate
+	Location   Zone
 }
