@@ -2,43 +2,46 @@ package domain
 
 //The following types are rather similar, simple containers
 
+//TODO: Enemy zones might need their own types since these reference CardInstances.
+//So something like EnemyTrash []EnemyInstance
+
 type Deck struct {
-	Cards []Card
+	Cards []CardInstance
 }
 
 func NewDeck() *Deck {
 
 	return &Deck{
-		Cards: make([]Card, 0),
+		Cards: make([]CardInstance, 0),
 	}
 }
 
 type Banish struct {
-	Cards []Card
+	Cards []CardInstance
 }
 
 func NewBanish() *Banish {
 	return &Banish{
-		Cards: make([]Card, 0),
+		Cards: make([]CardInstance, 0),
 	}
 }
 
 type Trash struct {
-	Cards []Card
+	Cards []CardInstance
 }
 
 func NewTrash() *Trash {
 	return &Trash{
-		Cards: make([]Card, 0),
+		Cards: make([]CardInstance, 0),
 	}
 }
 
 type Hand struct {
-	Cards []Card
+	Cards []CardInstance
 }
 
 func NewHand() *Hand {
 	return &Hand{
-		Cards: make([]Card, 0),
+		Cards: make([]CardInstance, 0),
 	}
 }

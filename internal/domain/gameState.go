@@ -20,13 +20,15 @@ func NewGameState() *GameState {
 		//Initialize fields
 
 		//Likely call initializaers of each component
-		Deck:        NewDeck(),
-		Board:       NewBoard(),
-		Hand:        NewHand(),
-		Trash:       NewTrash(),
+		Deck:   NewDeck(),
+		Board:  NewBoard(),
+		Hand:   NewHand(),
+		Trash:  NewTrash(),
+		Banish: NewBanish(),
+
+		//Enemy zones might need their own types
 		EnemyTrash:  NewTrash(),
 		EnemyBanish: NewBanish(),
-		Banish:      NewBanish(),
 	}
 
 }

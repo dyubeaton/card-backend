@@ -17,6 +17,8 @@ type CardInstance struct {
 	InstanceID string
 	Template   CardTemplate
 	Location   Zone
+	//TODO: Cost here?
+	//TODO: Subtypes here? Other categorization like color?
 }
 
 //Consider: are all enemies neccesarily units? Perhaps they have landmarks as well?
