@@ -17,7 +17,7 @@ func (au *AllyUnit) GetCanAttack() bool
 
 type EnemyUnit struct {
 	Unit
-	Instance      *EnemeyInstance
+	Instance      *EnemyInstance
 	CurrentHealth int
 	CanAttack     bool //not sure if this is neccesary
 	Position      []Position

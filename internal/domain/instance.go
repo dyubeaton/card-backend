@@ -23,7 +23,7 @@ type CardInstance struct {
 
 //Consider: are all enemies neccesarily units? Perhaps they have landmarks as well?
 //In that case the same separation should occur as in CardInstance
-type EnemeyInstance struct {
+type EnemyInstance struct {
 	GameObjectInstance
 	InstanceID string
 	Template   EnemyTemplate

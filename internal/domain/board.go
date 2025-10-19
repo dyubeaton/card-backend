@@ -1,6 +1,7 @@
 package domain
 
 type Board struct {
+	InstanceCollection
 	Board [][]Tile
 }
 
