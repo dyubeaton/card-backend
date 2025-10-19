@@ -4,7 +4,7 @@ package domain
 
 type AllyUnit struct {
 	Unit
-	Instance      CardInstance
+	Instance      *CardInstance
 	CurrentPower  int
 	CurrentHealth int
 	CanAttack     bool //not sure if this is neccesary
@@ -17,7 +17,7 @@ func (au *AllyUnit) GetCanAttack() bool
 
 type EnemyUnit struct {
 	Unit
-	Instance      EnemeyInstance
+	Instance      *EnemeyInstance
 	CurrentHealth int
 	CanAttack     bool //not sure if this is neccesary
 	Position      []Position
@@ -29,12 +29,12 @@ func (eu *EnemyUnit) GetCanAttack() bool
 
 type Spell struct {
 	//does it need to wrap an instance?
-
+	Instance *CardInstance
 }
 
 type Land struct {
 	Permanent
-	Instance CardInstance
+	Instance *CardInstance
 	Position []Position
 }
 
@@ -42,7 +42,7 @@ func (l *Land) GetPosition() []Position
 
 type Equip struct {
 	//Not a Permenant
-	Holder Permanent //Maybe they can be equip to lands? Otherwise this should say Unit
+	Holder *Permanent //Maybe they can be equip to lands? Otherwise this should say Unit
 
 }
 
