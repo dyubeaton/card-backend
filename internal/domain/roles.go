@@ -1,5 +1,16 @@
 // Structs that wrap Instance layer and sometiems implement behavioral interfaces
 // Are still "instances", just more specific
+/*
+Some General Guidelines:
+	These roles basically only apply when the instance is "active" or on board
+	(active is basically just for spells)
+
+	They are wrapped when activated/put on board
+
+	Dewrapped when sent off board/completed activation
+
+	Shouldn't actually need to implment the unwrap functionality here?
+*/
 package domain
 
 type AllyUnit struct {
@@ -10,6 +21,9 @@ type AllyUnit struct {
 	CanAttack     bool //not sure if this is neccesary
 	Position      []Position
 }
+
+//Wrap given card instance
+func NewAlliedUnit(ci CardInstance) *AllyUnit
 
 func (au *AllyUnit) GetPosition() []Position
 func (au *AllyUnit) GetCurrentHealth() int
@@ -23,6 +37,8 @@ type EnemyUnit struct {
 	Position      []Position
 }
 
+func NewEnemyUnit(ci EnemyInstance) *EnemyUnit
+
 func (eu *EnemyUnit) GetPosition() []Position
 func (eu *EnemyUnit) GetCurrentHealth() int
 func (eu *EnemyUnit) GetCanAttack() bool
@@ -32,19 +48,24 @@ type Spell struct {
 	Instance *CardInstance
 }
 
-type Land struct {
+func NewSpell(ci CardInstance) *Spell
+
+type AlliedLand struct {
 	Permanent
 	Instance *CardInstance
 	Position []Position
 }
 
-func (l *Land) GetPosition() []Position
+func NewAlliedLand(ci CardInstance) *AlliedLand
+func (l *AlliedLand) GetPosition() []Position
 
-type Equip struct {
+type AlliedEquip struct {
 	//Not a Permenant
 	Holder *Permanent //Maybe they can be equip to lands? Otherwise this should say Unit
 
 }
+
+func NewAlliedEquip(ci CardInstance) *AlliedEquip
 
 //TODO:
 //EnemyLand
