@@ -23,7 +23,12 @@ type AllyUnit struct {
 }
 
 //Wrap given card instance
-func NewAlliedUnit(ci CardInstance) *AllyUnit
+func NewAlliedUnit(ci *CardInstance) *AllyUnit {
+	//TODO: Expand with other fields
+	return &AllyUnit{
+		Instance: ci,
+	}
+}
 
 func (au *AllyUnit) GetPosition() []Position
 func (au *AllyUnit) GetCurrentHealth() int
@@ -31,24 +36,32 @@ func (au *AllyUnit) GetCanAttack() bool
 
 type EnemyUnit struct {
 	Unit
-	Instance      *EnemyInstance
+	Instance      *CardInstance
 	CurrentHealth int
 	CanAttack     bool //not sure if this is neccesary
 	Position      []Position
 }
 
-func NewEnemyUnit(ci EnemyInstance) *EnemyUnit
+func NewEnemyUnit(ei *CardInstance) *EnemyUnit {
+	return &EnemyUnit{
+		Instance: ei,
+	}
+}
 
 func (eu *EnemyUnit) GetPosition() []Position
 func (eu *EnemyUnit) GetCurrentHealth() int
 func (eu *EnemyUnit) GetCanAttack() bool
 
-type Spell struct {
-	//does it need to wrap an instance?
-	Instance *CardInstance
-}
+// type Spell struct {
+// 	//does it need to wrap an instance?
+// 	Instance *CardInstance
+// }
 
-func NewSpell(ci CardInstance) *Spell
+// func NewSpell(ci *CardInstance) *Spell {
+// 	return &Spell{
+// 		Instance: &ci,
+// 	}
+// }
 
 type AlliedLand struct {
 	Permanent
@@ -56,16 +69,28 @@ type AlliedLand struct {
 	Position []Position
 }
 
-func NewAlliedLand(ci CardInstance) *AlliedLand
+func NewAlliedLand(ci *CardInstance) *AlliedLand {
+	return &AlliedLand{
+		Instance: ci,
+	}
+}
 func (l *AlliedLand) GetPosition() []Position
 
 type AlliedEquip struct {
-	//Not a Permenant
-	Holder *Permanent //Maybe they can be equip to lands? Otherwise this should say Unit
+	Permanent
+	Instance *CardInstance
+	Holder   *Permanent //Maybe they can be equip to lands? Otherwise this should say Unit
 
 }
 
-func NewAlliedEquip(ci CardInstance) *AlliedEquip
+func NewAlliedEquip(ci *CardInstance) *AlliedEquip {
+	return &AlliedEquip{
+		Instance: ci,
+	}
+}
+
+//Probably just resturn Holder.GetPosition
+func (l *AlliedEquip) GetPosition() []Position
 
 //TODO:
 //EnemyLand

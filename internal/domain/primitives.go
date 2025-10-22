@@ -48,9 +48,9 @@ func (z Zone) String() string {
 type CardType int
 
 const (
-	TypeTroop CardType = iota
-	TypeLand
-	TypeEquip
+	TypeAlliedUnit CardType = iota
+	TypeAlliedLand
+	TypeAlliedEquip
 	TypeSpell
 	//Enemy Types (TODO: figure out if this is neccesary)
 	TypeEnemyUnit
@@ -60,12 +60,12 @@ const (
 
 func (c CardType) String() string {
 	switch c {
-	case TypeTroop:
-		return "Troop"
-	case TypeLand:
-		return "Land"
-	case TypeEquip:
-		return "Equip"
+	case TypeAlliedUnit:
+		return "AlliedUnit"
+	case TypeAlliedLand:
+		return "AlliedLand"
+	case TypeAlliedEquip:
+		return "AlliedEquip"
 	case TypeSpell:
 		return "Spell"
 	case TypeEnemyUnit:

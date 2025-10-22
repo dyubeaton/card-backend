@@ -22,6 +22,7 @@ type StateManager struct {
 	//Probably needs a reference to the orchestrater above a round (like what tracks the current deck, enemies, and what not) I imagine this process will link together
 	//relevant templates and instances
 
+	templateRegistry *TemplateRegistry
 }
 
 // Init new GSM with context.
@@ -39,12 +40,13 @@ func (gsm *StateManager) InitGameState() {
 	//TODO: actually fill out init logic using context information (include template linking and what not)
 }
 
-// High level function that moves any instance.
-// Should handle any wrappping/similar state changes
-func (gsm *StateManager) MoveInstance(inst GameObjectInstance, destination Zone) error {
+// Mid level function that moves any instance.
+// Actually have this be called by other high level functions, like DestroyCard, PlayPermenantToBoard, etc
+// Does not need to handle wrapping/unwrapping
+func (gsm *StateManager) MoveInstance(inst *CardInstance, destination Zone) error {
 
 	//Original collection
-	originCollection, err := gsm.getCollectionFromZone(inst.GetLocation())
+	originCollection, err := gsm.getCollectionFromZone(inst.Location)
 
 	if err != nil {
 		return err
@@ -57,21 +59,17 @@ func (gsm *StateManager) MoveInstance(inst GameObjectInstance, destination Zone)
 	}
 
 	//Remove from original collection
-	err = originCollection.RemoveInstance(inst.GetInstanceID())
+	err = originCollection.RemoveInstance(inst.InstanceID)
 
 	if err != nil {
 		return err
 	}
-
-	//TODO: Per instance dewrapping logic must occur around here
 
 	err = destinationCollection.AddInstance(inst)
 
 	if err != nil {
 		return err
 	}
-
-	//TODO: Wrapping logic needs to happen somewhere around here
 
 	return nil
 }
@@ -95,4 +93,19 @@ func (gsm *StateManager) getCollectionFromZone(location Zone) (InstanceCollectio
 	default:
 		return nil, fmt.Errorf("invalid zone:  %d ", location)
 	}
+}
+
+// Wrap the provided instance using its type from its template
+// TODO: Probably remove distinction between allied/enemy instances and add that as a field in instance
+func (gsm *StateManager) wrapInstance(instance *CardInstance) Permanent {
+
+	template := gsm.templateRegistry.GetTemplate(instance.InstanceID)
+
+	switch template.CardType {
+	case TypeAlliedUnit:
+		return NewAlliedUnit(instance)
+	case TypeAlliedLand:
+		return NewAlliedLand(instance)
+	}
+
 }

@@ -5,3 +5,10 @@ package domain
 
 type GameContext struct {
 }
+
+//Early Concept
+type TemplateRegistry struct {
+	TemplateList []*CardTemplate
+}
+
+func (tr *TemplateRegistry) GetTemplate(templateID string) CardTemplate

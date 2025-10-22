@@ -20,8 +20,8 @@ type GameState struct {
 	Banish *CardInstanceCollection
 
 	//enemy instance cycle
-	EnemyTrash  *EnemyInstanceCollection
-	EnemyBanish *EnemyInstanceCollection
+	EnemyTrash  *CardInstanceCollection
+	EnemyBanish *CardInstanceCollection
 
 	//shared
 	Board *Board
