@@ -97,7 +97,7 @@ func (gsm *StateManager) getCollectionFromZone(location Zone) (InstanceCollectio
 
 // Wrap the provided instance using its type from its template
 // TODO: Probably remove distinction between allied/enemy instances and add that as a field in instance
-func (gsm *StateManager) wrapInstance(instance *CardInstance) Permanent {
+func (gsm *StateManager) wrapInstancePermenant(instance *CardInstance) Permanent {
 
 	template := gsm.templateRegistry.GetTemplate(instance.InstanceID)
 
@@ -106,6 +106,16 @@ func (gsm *StateManager) wrapInstance(instance *CardInstance) Permanent {
 		return NewAlliedUnit(instance)
 	case TypeAlliedLand:
 		return NewAlliedLand(instance)
+	case TypeAlliedEquip:
+		return NewAlliedEquip(instance)
+	case TypeEnemyUnit:
+		return NewEnemyUnit(instance)
+	case TypeEnemyEquip:
+		return NewEnemyEquip(instance)
+	case TypeEnemyLand:
+		return NewEnemyLand(instance)
+	default:
+		return nil
 	}
 
 }

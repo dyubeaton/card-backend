@@ -74,7 +74,21 @@ func NewAlliedLand(ci *CardInstance) *AlliedLand {
 		Instance: ci,
 	}
 }
-func (l *AlliedLand) GetPosition() []Position
+func (al *AlliedLand) GetPosition() []Position
+
+type EnemyLand struct {
+	Permanent
+	Instance *CardInstance
+	Position []Position
+}
+
+func NewEnemyLand(ci *CardInstance) *EnemyLand {
+	return &EnemyLand{
+		Instance: ci,
+	}
+}
+
+func (el *EnemyLand) GetPosition() []Position
 
 type AlliedEquip struct {
 	Permanent
@@ -90,7 +104,21 @@ func NewAlliedEquip(ci *CardInstance) *AlliedEquip {
 }
 
 //Probably just resturn Holder.GetPosition
-func (l *AlliedEquip) GetPosition() []Position
+func (ae *AlliedEquip) GetPosition() []Position
+
+type EnemyEquip struct {
+	Permanent
+	Instance *CardInstance
+	Holder   *Permanent
+}
+
+func NewEnemyEquip(ci *CardInstance) *EnemyEquip {
+	return &EnemyEquip{
+		Instance: ci,
+	}
+}
+
+func (ee *EnemyEquip) GetPosition() []Position
 
 //TODO:
 //EnemyLand
