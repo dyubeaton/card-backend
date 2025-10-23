@@ -119,3 +119,27 @@ func (gsm *StateManager) wrapInstancePermenant(instance *CardInstance) Permanent
 	}
 
 }
+
+// Move permenant off board
+// Unwrap logic
+func (gsm *StateManager) MoveInstanceOffBoard(instance *CardInstance, destination Zone) error
+
+// Wrap instance then move it onto the board
+// Return the wrapper
+func (gsm *StateManager) MoveInstanceOnBoard(instance *CardInstance) (Permanent, error)
+
+/*
+Thoughts on more methods, this should be the hub for any reasonable action I want events/event actions to take
+Basically the "outcomes" of anything should be recorded through these methods
+
+I've covered state changed regarding the placement of the cards, basically the "zone" field and of course reflecting the change on the game state
+This whole game state is meant to capture the world of the instances and what holds them. I've most (i think) mapped out the "what holds them"
+Thus, moving on, I should think about anything else that could modify an instance. (I still need to think about how persistent/status effects will work between the GSM and
+controllers, hopefully I can put this off for now)
+
+UnitTakesDamage
+UnitHeals
+UnitMoves
+AddPermenant/StatusEffect?
+
+*/

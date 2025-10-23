@@ -10,17 +10,22 @@ type CardTemplate struct {
 	// GameObjectTemplate
 	TemplateId string
 	Name       string
-	CardType   CardType
+	CardType   CardType //spell, unit, land, etc
 
 	//Card specific fields?
-	Cost int
+	Cost    int //0 for enemies?
+	Health  int
+	Attack  int
+	Color   CardColor
+	Subtype CardSubtype
+
+	/*
+		Eventually:
+			Activate Main List
+			Trigger List
+	*/
+
 }
-
-func (ct *CardTemplate) GetTemplateID() string
-
-func (ct *CardTemplate) GetName() string
-
-func (ct *CardTemplate) GetCardType() CardType
 
 // type EnemyTemplate struct {
 // 	GameObjectTemplate

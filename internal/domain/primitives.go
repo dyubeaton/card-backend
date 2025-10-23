@@ -78,3 +78,38 @@ func (c CardType) String() string {
 		return "unknown"
 	}
 }
+
+type CardColor int
+
+const (
+	ColorRed CardColor = iota
+	ColorBlue
+	ColorGreen
+	ColorBlack
+)
+
+func (c CardColor) String() string {
+	switch c {
+	case ColorRed:
+		return "ColorRed"
+	case ColorBlue:
+		return "ColorBlue"
+	case ColorGreen:
+		return "ColorGreen"
+	case ColorBlack:
+		return "ColorBlack"
+	default:
+		return "unknown"
+	}
+}
+
+type CardSubtype int
+
+const (
+	SubtypeNone CardSubtype = iota
+	SubtypeKnight
+	SubtypeDemon
+	SubtypeSprite
+	SubtypeMilitia
+	//To be exapnded
+)
